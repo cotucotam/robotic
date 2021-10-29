@@ -499,15 +499,25 @@ try
     yaw = str2num(get(handles.DisplayYaw,'String'));
     Scara=SCARA_object(0.372,0.095,0.45,0.4);
     I = SCARA_object.invest_kinnematic(Scara,x,y,z,yaw);
-    set(handles.DisplayTheta1,'string',num2str(I(1))); 
-    set(handles.DisplayTheta2,'string',num2str(I(2)));
-    set(handles.DisplayTheta4,'string',num2str(I(3)));
-    set(handles.DisplayD3,'string',num2str(I(4))); 
-    set(handles.SliderTheta1,'value',I(1));
-    set(handles.SliderTheta2,'value',I(2));
-    set(handles.SliderTheta4,'value',I(3));
-    set(handles.SliderD3,'value',I(4));
-    plot_robot(handles);
+    theta1=I(1);
+    theta2=I(2);
+    D3=I(4);
+    if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145 && -0.2 < D3 && D3 < 0.08
+        set(handles.DisplayTheta1,'string',num2str(I(1))); 
+        set(handles.DisplayTheta2,'string',num2str(I(2)));
+        set(handles.DisplayTheta4,'string',num2str(I(3)));
+        set(handles.DisplayD3,'string',num2str(I(4))); 
+        set(handles.SliderTheta1,'value',I(1));
+        set(handles.SliderTheta2,'value',I(2));
+        set(handles.SliderTheta4,'value',I(3));
+        set(handles.SliderD3,'value',I(4));
+        plot_robot(handles);
+    else
+    selection=questdlg('Out of workspace!',...
+                     'Error!!!',...
+                     'OK','Cancel','OK');
+    end
+
 catch
      warning();
 selection=questdlg('Out of workspace!',...
@@ -536,6 +546,10 @@ try
     yaw = str2num(get(handles.DisplayYaw,'String'));
     Scara=SCARA_object(0.372,0.095,0.45,0.4);
     I = SCARA_object.invest_kinnematic(Scara,x,y,z,yaw);
+    theta1=I(1);
+    theta2=I(2);
+    D3=I(4);
+    if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145&& -0.2 < D3 && D3 < 0.08
     set(handles.DisplayTheta1,'string',num2str(I(1))); 
     set(handles.DisplayTheta2,'string',num2str(I(2)));
     set(handles.DisplayTheta4,'string',num2str(I(3)));
@@ -545,6 +559,11 @@ try
     set(handles.SliderTheta4,'value',I(3));
     set(handles.SliderD3,'value',I(4));
     plot_robot(handles);
+    else
+    selection=questdlg('Out of workspace!',...
+                     'Error!!!',...
+                     'OK','Cancel','OK');
+    end
 catch
      warning();
 selection=questdlg('Out of workspace!',...
@@ -567,6 +586,10 @@ try
     yaw = str2num(get(handles.DisplayYaw,'String'));
     Scara=SCARA_object(0.372,0.095,0.45,0.4);
     I = SCARA_object.invest_kinnematic(Scara,x,y,z,yaw);
+    theta1=I(1);
+    theta2=I(2);
+    D3=I(4);
+    if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145&& -0.2 < D3 && D3 < 0.08
     set(handles.DisplayTheta1,'string',num2str(I(1))); 
     set(handles.DisplayTheta2,'string',num2str(I(2)));
     set(handles.DisplayTheta4,'string',num2str(I(3)));
@@ -576,6 +599,11 @@ try
     set(handles.SliderTheta4,'value',I(3));
     set(handles.SliderD3,'value',I(4));
     plot_robot(handles);
+    else
+    selection=questdlg('Out of workspace!',...
+                     'Error!!!',...
+                     'OK','Cancel','OK');
+    end
 catch
      warning();
 selection=questdlg('Out of workspace!',...
@@ -600,15 +628,25 @@ try
     yaw = str2num(get(handles.DisplayYaw,'String'));
     Scara=SCARA_object(0.372,0.095,0.45,0.4);
     I = SCARA_object.invest_kinnematic(Scara,x,y,z,yaw);
-    set(handles.DisplayTheta1,'string',num2str(I(1))); 
-    set(handles.DisplayTheta2,'string',num2str(I(2)));
-    set(handles.DisplayTheta4,'string',num2str(I(3)));
-    set(handles.DisplayD3,'string',num2str(I(4))); 
-    set(handles.SliderTheta1,'value',I(1));
-    set(handles.SliderTheta2,'value',I(2));
-    set(handles.SliderTheta4,'value',I(3));
-    set(handles.SliderD3,'value',I(4));
-    plot_robot(handles);
+    theta1=I(1);
+    theta2=I(2);
+    D3=I(4);
+    if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145&& -0.2 < D3 && D3 < 0.08
+        set(handles.DisplayTheta1,'string',num2str(I(1))); 
+        set(handles.DisplayTheta2,'string',num2str(I(2)));
+        set(handles.DisplayTheta4,'string',num2str(I(3)));
+        set(handles.DisplayD3,'string',num2str(I(4))); 
+        set(handles.SliderTheta1,'value',I(1));
+        set(handles.SliderTheta2,'value',I(2));
+        set(handles.SliderTheta4,'value',I(3));
+        set(handles.SliderD3,'value',I(4));
+        plot_robot(handles);
+    else
+    selection=questdlg('Out of workspace!',...
+                     'Error!!!',...
+                     'OK','Cancel','OK');
+    end
+
 catch
      warning();
 selection=questdlg('Out of workspace!',...
@@ -631,15 +669,25 @@ z = z+ ofset;
 yaw = str2num(get(handles.DisplayYaw,'String'));
 Scara=SCARA_object(0.372,0.095,0.45,0.4);
 I = SCARA_object.invest_kinnematic(Scara,x,y,z,yaw);
-set(handles.DisplayTheta1,'string',num2str(I(1))); 
-set(handles.DisplayTheta2,'string',num2str(I(2)));
-set(handles.DisplayTheta4,'string',num2str(I(3)));
-set(handles.DisplayD3,'string',num2str(I(4))); 
-set(handles.SliderTheta1,'value',I(1));
-set(handles.SliderTheta2,'value',I(2));
-set(handles.SliderTheta4,'value',I(3));
-set(handles.SliderD3,'value',I(4));
-plot_robot(handles);
+theta1=I(1);
+theta2=I(2);
+D3=I(4);
+if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145&& -0.2 < D3 && D3 < 0.08
+    set(handles.DisplayTheta1,'string',num2str(I(1))); 
+    set(handles.DisplayTheta2,'string',num2str(I(2)));
+    set(handles.DisplayTheta4,'string',num2str(I(3)));
+    set(handles.DisplayD3,'string',num2str(I(4))); 
+    set(handles.SliderTheta1,'value',I(1));
+    set(handles.SliderTheta2,'value',I(2));
+    set(handles.SliderTheta4,'value',I(3));
+    set(handles.SliderD3,'value',I(4));
+    plot_robot(handles);
+else
+    selection=questdlg('Out of workspace!',...
+                     'Error!!!',...
+                     'OK','Cancel','OK');
+end
+
 
 % --- Executes on button press in BtnNegativeZ.
 function BtnNegativeZ_Callback(hObject, eventdata, handles)
@@ -654,15 +702,25 @@ z = z- ofset;
 yaw = str2num(get(handles.DisplayYaw,'String'));
 Scara=SCARA_object(0.372,0.095,0.45,0.4);
 I = SCARA_object.invest_kinnematic(Scara,x,y,z,yaw);
-set(handles.DisplayTheta1,'string',num2str(I(1))); 
-set(handles.DisplayTheta2,'string',num2str(I(2)));
-set(handles.DisplayTheta4,'string',num2str(I(3)));
-set(handles.DisplayD3,'string',num2str(I(4))); 
-set(handles.SliderTheta1,'value',I(1));
-set(handles.SliderTheta2,'value',I(2));
-set(handles.SliderTheta4,'value',I(3));
-set(handles.SliderD3,'value',I(4));
-plot_robot(handles);
+theta1=I(1);
+theta2=I(2);
+D3=I(4);
+if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145&& -0.2 < D3 && D3 < 0.08
+    set(handles.DisplayTheta1,'string',num2str(I(1))); 
+    set(handles.DisplayTheta2,'string',num2str(I(2)));
+    set(handles.DisplayTheta4,'string',num2str(I(3)));
+    set(handles.DisplayD3,'string',num2str(I(4))); 
+    set(handles.SliderTheta1,'value',I(1));
+    set(handles.SliderTheta2,'value',I(2));
+    set(handles.SliderTheta4,'value',I(3));
+    set(handles.SliderD3,'value',I(4));
+    plot_robot(handles);
+else
+    selection=questdlg('Out of workspace!',...
+                     'Error!!!',...
+                     'OK','Cancel','OK');
+end
+
 
 
 % --- Executes on button press in BtnPositiveYaw.
