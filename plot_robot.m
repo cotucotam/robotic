@@ -47,8 +47,8 @@ Con =[p0,p1,p2,p3,p4];
 % plot_coordinate(p0(1),p0(2),p0(3),1,1,1,0);
 %% v? h? t?a ??
 plot_coordinate(p0(1),p0(2),p0(3)+0.1,A0_0);%% 0.1 là ofset cai de
-plot_coordinate(px1,py1,pz1+0.386,A0_1);
-plot_coordinate(px2,py2,pz2+0.386,A0_2);
+plot_coordinate(px1,py1,pz1+0.306,A0_1);
+plot_coordinate(px2,py2,pz2+0.306,A0_2);
 plot_coordinate(px3,py3,pz3,A0_3);
 plot_coordinate(px4,py4,pz4,A0_4);
 
@@ -182,9 +182,12 @@ Link2_Y=[py1+r4*sin(th2+pi/2),py1-r4*sin(th2+pi/2),py2-r5*sin(th2+pi/2),py2+r5*s
 set(handles.DisplayX,'string',num2str(p4(1)));
 set(handles.DisplayY,'string',num2str(p4(2)));
 set(handles.DisplayZ,'string',num2str(p4(3)));
-set(handles.DisplayRoll,'string',num2str(o4(1)/pi*180));
-set(handles.DisplayPitch,'string',num2str(o4(2)/pi*180));
 set(handles.DisplayYaw,'string',num2str(o4(3)/pi*180));
+data1 = [p1(1) p1(2) p1(3) o1(1)/pi*180 o1(2)/pi*180 o1(3)/pi*180;
+         p2(1) p2(2) p2(3) o2(1)/pi*180 o2(2)/pi*180 o2(3)/pi*180;
+         p3(1) p3(2) p3(3) o3(1)/pi*180 o3(2)/pi*180 o3(3)/pi*180;
+         p4(1) p4(2) p4(3) o4(1)/pi*180 o4(2)/pi*180 o4(3)/pi*180];
+set(handles.TablePosition,'data',data1);
 
 plotdata = [plotdata;p4(1) p4(2) p4(3)];
 plot3(plotdata(:,1),plotdata(:,2),plotdata(:,3),'Color','r','MarkerSize',10);
