@@ -96,14 +96,14 @@ fill3(X3'+px1, Y3'+py1,Z3'+pz1, RobotColor)
 
 r4= 0.158;
 [X4 Y4 Z4]=cylinder(r4);
-Z4=Z4*0.286;
+Z4=Z4*0.206;
 surf(X4+px1, Y4+py1 ,Z4+pz1+0.0615,'FaceColor', RobotColor,'EdgeColor','none');
 fill3(X4'+px1, Y4'+py1,Z4'+pz1+0.0615, RobotColor);
 % 
 %joint 2
 r5= 0.124;
 [X5 Y5 Z5]=cylinder(r5);
-Z5=Z5*(0.286+0.0615);
+Z5=Z5*(0.206+0.0615);
 surf(X5+px2, Y5+py2 ,Z5+pz2,'FaceColor', RobotColor,'EdgeColor','none');
 fill3(X5'+px2, Y5'+py2,Z5'+pz2, RobotColor);
 % 
@@ -117,8 +117,8 @@ fill3(X5'+px2, Y5'+py2,Z5'+pz2, RobotColor);
 r6= 0.0395;
 [X6 Y6 Z6]=cylinder(r6);
 Z6=Z6*0.68;
-surf(X6+px3, Y6+py3 ,Z6+pz4,'FaceColor', RobotColor,'EdgeColor','none');
-fill3(X6'+px3, Y6'+py3,Z6'+pz4, RobotColor);
+surf(X6+px3, Y6+py3 ,Z6+pz4,'FaceColor', [0 0 0],'EdgeColor','none');
+fill3(X6'+px3, Y6'+py3,Z6'+pz4, [0 0 0]);
 
 
 %link 1
@@ -149,9 +149,9 @@ Link2_Y=[py1+r4*sin(th2+pi/2),py1-r4*sin(th2+pi/2),py2-r5*sin(th2+pi/2),py2+r5*s
           py1-r4*sin(th2+pi/2),py1-r4*sin(th2+pi/2),py2-r5*sin(th2+pi/2),py2-r5*sin(th2+pi/2)];
       
  Link2_Z=[ pz2, pz2, pz2, pz2;
-          pz2+0.2860+0.0615, pz2+0.286+0.0615, pz2+0.286+0.0615, pz2+0.286+0.0615;
-          pz2, pz2+0.286+0.0615,pz2+0.286+0.0615,pz2;
-          pz2, pz2+0.286+0.0615,pz2+0.286+0.0615,pz2];
+          pz2+0.2060+0.0615, pz2+0.206+0.0615, pz2+0.206+0.0615, pz2+0.206+0.0615;
+          pz2, pz2+0.206+0.0615,pz2+0.206+0.0615,pz2;
+          pz2, pz2+0.206+0.0615,pz2+0.206+0.0615,pz2];
 
  fill3(Link2_X',Link2_Y',Link2_Z',RobotColor);
          

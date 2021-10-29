@@ -68,7 +68,10 @@ theta2=145*pi/180
            [ A0_1, A0_2, A0_3, A0_4]=Scara.forward_kinnematic(Scara,Scara.theta1,Scara.theta2,Scara.theta4,Scara.d3);  
            p0 = [0;0;0];
            [p4, o4] = cal_pose(A0_4,p0);
-           plotdata = [plotdata;p4(1) p4(2) p4(3)]
+           plotdata = [plotdata;p4(1) p4(2) p4(3)];
+           X=[X; p4(1) p4(1)];
+           Y=[Y; p4(2) p4(2)];
+           Z=[Z;0 p4(3)];
         end
 theta2=-145*pi/180
         for theta1= 60*pi/180:-5*pi/180:-125*pi/180
@@ -79,8 +82,14 @@ theta2=-145*pi/180
            [ A0_1, A0_2, A0_3, A0_4]=Scara.forward_kinnematic(Scara,Scara.theta1,Scara.theta2,Scara.theta4,Scara.d3);  
            p0 = [0;0;0];
            [p4, o4] = cal_pose(A0_4,p0);
-           plotdata = [plotdata;p4(1) p4(2) p4(3)]
+           plotdata = [plotdata;p4(1) p4(2) p4(3)];
+           X=[X; p4(1) p4(1)];
+           Y=[Y; p4(2) p4(2)];
+           Z=[Z;0 p4(3)];
         end
  
 %plot3(plotdata(:,1),plotdata(:,2),plotdata(:,3),'Color','r','MarkerSize',10);
-fill3(plotdata(:,1),plotdata(:,2),plotdata(:,3),[1 1 1],'FaceALpha',0.9);
+ fill3(plotdata(:,1),plotdata(:,2),plotdata(:,3),[0 0 1],'FaceALpha',0.1); 
+ surf(X,Y,Z,'FaceALpha',0.1,'EdgeColor','none');
+ plotdata = null(1,3);
+ hold off
