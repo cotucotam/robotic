@@ -59,7 +59,7 @@ Scara=SCARA_object(0.372,0.095,0.45,0.4);
  hold on
  
 %%theta2=145
-theta2=145*pi/180
+theta2=145*pi/180;
         for theta1= 125*pi/180:-5*pi/180:-60*pi/180
             Scara.theta1=theta1;
             Scara.theta2=theta2;
@@ -73,7 +73,7 @@ theta2=145*pi/180
            Y=[Y; p4(2) p4(2)];
            Z=[Z;0 p4(3)];
         end
-theta2=-145*pi/180
+theta2=-145*pi/180;
         for theta1= 60*pi/180:-5*pi/180:-125*pi/180
             Scara.theta1=theta1;
             Scara.theta2=theta2;
@@ -89,7 +89,7 @@ theta2=-145*pi/180
         end
  
 %plot3(plotdata(:,1),plotdata(:,2),plotdata(:,3),'Color','r','MarkerSize',10);
- fill3(plotdata(:,1),plotdata(:,2),plotdata(:,3),[0 0 1],'FaceALpha',0.1); 
+ fill3(plotdata(:,1),plotdata(:,2),plotdata(:,3),[1 1 1],'FaceALpha',0.1); 
  surf(X,Y,Z,'FaceALpha',0.1,'EdgeColor','none');
  plotdata = null(1,3);
  hold off

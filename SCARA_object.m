@@ -73,8 +73,14 @@ classdef SCARA_object < handle
             theta2 = atan2(s2,c2)/pi*180;    
             d3 = z - d4-d1;
             theta4 = yaw - theta1 - theta2;
-            I = [theta1 theta2 theta4 d3];
-             
+            if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145&& -0.2 < d3 && d3 < 0.08&&-180 < theta4 && theta4 <180
+                I = [theta1 theta2 theta4 d3 1];
+            else
+                 I=[0 0 0 0 0];
+                 selection=questdlg('Out of workspace!',...
+                 'Error!!!',...
+                  'OK','Cancel','OK');
+            end
         end
 
     end
