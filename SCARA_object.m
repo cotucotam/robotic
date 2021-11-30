@@ -1,7 +1,7 @@
 classdef SCARA_object < handle
     properties
         % a     = [a1    ; a2     ;  0  ; 0     ];
-        % alpha = [0     ; pi     ;  0  ; pi    ];
+        % alpha = [0     ; pi     ;  0  ; 0    ];
         % d     = [0     ; 0      ;  d3 ; d4    ];
         % theta = [theta1; theta2 ;  0  ; theta4];
         a1 ;
@@ -9,9 +9,9 @@ classdef SCARA_object < handle
         a3=0;
         a4=0;
         alpha1=0;
-        alpha2=0;
+        alpha2=pi;
         alpha3=0;
-        alpha4=pi;
+        alpha4=0;
         d1
         d2=0;
         d3
@@ -32,7 +32,7 @@ classdef SCARA_object < handle
             obj.d1=d_1;
             obj.a1=a_1;
             obj.a2=a_2;
-            obj.d4=-d_4;
+            obj.d4=d_4;
         end
         function [T_01, T_02, T_03, T_04]=forward_kinnematic(obj,...
                 theta_1,theta_2, theta_4,d_3)
@@ -71,16 +71,17 @@ classdef SCARA_object < handle
             theta1 = atan2(s1,c1)/pi*180;          
            % theta1 = (atan2(y,x)-atan2(a2*s2,a1+a2*c2))/pi*180
             theta2 = atan2(s2,c2)/pi*180;    
-            d3 = z - d4-d1;
-            theta4 = yaw - theta1 - theta2;
-            if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145&& -0.2 < d3 && d3 < 0.08&&-180 < theta4 && theta4 <180
-                I = [theta1 theta2 theta4 d3 1];
-            else
-                 I=[0 0 0 0 0];
-                 selection=questdlg('Out of workspace!',...
-                 'Error!!!',...
-                  'OK','Cancel','OK');
-            end
+            d3 = d1-d4-z;
+            theta4 = -(yaw - theta1 - theta2);
+             I = [theta1 theta2 theta4 d3 1];
+%             if -125 < theta1 && theta1 <125 && -145 < theta2 && theta2 <145&& -0.2 < d3 && d3 < 0.08&&-180 < theta4 && theta4 <180
+%                 I = [theta1 theta2 theta4 d3 1];
+%             else
+%                  I=[0 0 0 0 0];
+%                  selection=questdlg('Out of workspace!',...
+%                  'Error!!!',...
+%                   'OK','Cancel','OK');
+%             end
         end
 
     end
