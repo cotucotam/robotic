@@ -300,19 +300,43 @@ if qmax ~= 0
     q_2dot=q_2dot_tempt;
     q_dot=q_dot_tempt;
     q=q_tempt;
-    %% Linear path planning
-    % Calc and plot q_x, q_y, q_z
-    q_x  = CurrentX + SignX * q * sin(my_beta) * cos(my_alpha)              ;
-    q_y  = CurrentY + SignY * q * sin(my_beta) * sin(abs(my_alpha))         ;
-    q_z  = CurrentZ + SignZ * q * abs( cos(my_beta))                        ;
+    if strcmp(path_planning_type,'linear')
+        %% Linear path planning
+        % Calc and plot q_x, q_y, q_z
+        q_x  = CurrentX + SignX * q * sin(my_beta) * cos(my_alpha)              ;
+        q_y  = CurrentY + SignY * q * sin(my_beta) * sin(abs(my_alpha))         ;
+        q_z  = CurrentZ + SignZ * q * abs( cos(my_beta))                        ;
+        % Calc and plot q_x_dot, q_y_dot, q_z_dot
+        q_x_dot  = SignX * q_dot * sin(my_beta) * cos(my_alpha)              ;
+        q_y_dot  = SignY * q_dot * sin(my_beta) * sin(abs(my_alpha))         ;
+        q_z_dot  = SignZ * q_dot * abs( cos(my_beta))                        ;
+        % Calc and plot q_x_dot, q_y_dot, q_z_dot
+        q_x_2dot  = SignX * q_2dot * sin(my_beta)* cos(my_alpha)            ;
+        q_y_2dot  = SignY * q_2dot * sin(my_beta) * sin(abs(my_alpha))       ;
+        q_z_2dot  = SignZ * q_2dot * abs( cos(my_beta))                      ;
+    elseif strcmp(path_planning_type,'circular')% q_max tuong duong gamma_max ; q tuong duong gamma;
+        %
+        gamma = (q * gamma_max/q_max)';
+        Ox = -(cos(gamma).*OA + sin(gamma).*cross(z_hat , OA));
+        q_x  = O_cir(1) + Ox(1,:)   ;
+        q_y  = O_cir(2) + Ox(2,:)   ;
+        q_z  = O_cir(3) + Ox(3,:)   ;
+        %
+        % Calc and plot q_x_dot, q_y_dot, q_z_dot
+        gamma_dot = (q_dot  * gamma_max/q_max)';
+        Ox_dot = -(-gamma_dot.*sin(gamma).*OA + gamma_dot.*cos(gamma).*cross(z_hat , OA));
+        q_x_dot  = Ox_dot(1,:);             
+        q_y_dot  = Ox_dot(2,:);
+        q_z_dot  = Ox_dot(3,:);           
+
     % Calc and plot q_x_dot, q_y_dot, q_z_dot
-    q_x_dot  = SignX * q_dot * sin(my_beta) * cos(my_alpha)              ;
-    q_y_dot  = SignY * q_dot * sin(my_beta) * sin(abs(my_alpha))         ;
-    q_z_dot  = SignZ * q_dot * abs( cos(my_beta))                        ;
-    % Calc and plot q_x_dot, q_y_dot, q_z_dot
-    q_x_2dot  = SignX * q_2dot * sin(my_beta)* cos(my_alpha)            ;
-    q_y_2dot  = SignY * q_2dot * sin(my_beta) * sin(abs(my_alpha))       ;
-    q_z_2dot  = SignZ * q_2dot * abs( cos(my_beta))                      ;
+        gamma_2dot = (q_2dot * gamma_max/q_max)';
+        Ox_2dot = (gamma_2dot.*sin(gamma).*OA + gamma_dot.^2.*cos(gamma).*OA ...
+            - gamma_2dot.*cos(gamma).*cross(z_hat , OA) + gamma_dot.^2.*sin(gamma).*cross(z_hat , OA));
+        q_x_2dot  =  Ox_2dot(1,:)  ;
+        q_y_2dot  =  Ox_2dot(2,:)  ;     
+        q_z_2dot  =  Ox_2dot(3,:)  ;        
+    end
     % update
     q_x_plot=[q_x_plot;q_x];
     q_y_plot=[q_y_plot;q_y];
